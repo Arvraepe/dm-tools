@@ -1,0 +1,35 @@
+{
+  "name": "dm-core",
+  "version": "1.0.0",
+  "description": "### What is this repository for? ###",
+  "main": "Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node Server.js --env=local"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Arvraepe-jstack@bitbucket.org/Arvraepe-jstack/cw-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/Arvraepe-jstack/cw-node#readme",
+  "dependencies": {
+    "app-module-path": "^2.2.0",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "install": "^0.10.1",
+    "jsonwebtoken": "^8.1.0",
+    "minimist": "^1.2.0",
+    "mongoose": "^4.13.6",
+    "npm": "^5.5.1",
+    "ramda": "^0.25.0",
+    "request": "^2.83.0",
+    "rxjs": "^5.5.2",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
+}

@@ -1,0 +1,29 @@
+$row-height: 40px;
+
+.cw-table {
+    .cw-table-header {
+        width: 100%;
+        display: flex;
+        line-height: $row-height;
+        font-weight: bold;
+        border-bottom: 1px solid $primary-light-purple;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+    }
+
+    .cw-table-row {
+        width: 100%;
+        display: flex;
+        line-height: $row-height;
+        cursor: pointer;
+        background-color: lighten($background-purple, 1);
+
+        &.even {
+            background-color: lighten($background-purple, 5);
+        }
+
+        &:hover {
+            color: $primary-red;
+        }
+    }
+}

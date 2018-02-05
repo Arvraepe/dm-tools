@@ -1,0 +1,24 @@
+.label {
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+
+    img {
+        margin-left: 6px;
+    }
+
+    &.label-red {
+        background-color: $primary-red;
+    }
+
+    &.label-green {
+        background-color: $primary-green;
+    }
+
+    &:hover {
+        opacity: 0.9;
+    }
+}

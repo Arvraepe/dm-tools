@@ -1,0 +1,6 @@
+{
+  "environment": "Development",
+  "production": false,
+  "port": 8080,
+  "secret": "remuzdndchristmas"
+}

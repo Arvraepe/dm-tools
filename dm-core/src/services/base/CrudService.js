@@ -1,29 +1,31 @@
-module.exports = (model) => {
+const CrudRepository = require('repositories/base/CrudRepository');
 
-  const repository = require('repositories/base/CrudRepository')(model);
+module.exports = (config) => {
+
+  const Repository = CrudRepository(config);
 
   const create = (requestor = { _id: 'SYSTEM' }, raw) => {
     raw.createdBy = requestor._id;
     raw.createdOn = new Date();
 
-    return repository.create(raw);
+    return Repository.create(raw);
   };
 
   const update = (requestor = { _id: 'SYSTEM' }, raw) => {
     raw.lastModifiedBy = requestor._id;
     raw.lastModifiedOn = new Date();
 
-    return repository.create(raw);
+    return Repository.create(raw);
   };
 
-  const findAll = (requestor) => repository.findAll();
-  const findSelected = (requestor, columns, includeDeleted) => repository.findSelected(columns, includeDeleted);
-  const getById = (requestor, id, includeDeleted) => repository.getById(id, includeDeleted);
-  const remove = (requestor, id) => repository.remove(id, requestor);
-  const hardRemove = (requestor, id) => repository.hardRemove(id);
+  const findAll = (requestor) => Repository.findAll();
+  const getByProperty = (requestor, where, includeDeleted) => Repository.getByProperties(where, includeDeleted);
+  const getById = (requestor, id, includeDeleted) => Repository.getById(id, includeDeleted);
+  const remove = (requestor, id) => Repository.remove(id, requestor);
+  const hardRemove = (requestor, id) => Repository.hardRemove(id);
 
   return {
-    findAll, findSelected, create, getById, update, remove, hardRemove
+    findAll, getByProperty, create, getById, update, remove, hardRemove
   }
 
 };

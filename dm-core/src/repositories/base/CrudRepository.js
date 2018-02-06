@@ -1,6 +1,5 @@
-/**
- * Created by vanraar on 23/06/17.
- */
+const BaseModel = require('models/base/BaseModel');
+
 const Mongoose = require('mongoose');
 Mongoose.connect('mongodb://localhost/dm-tools');
 
@@ -13,7 +12,9 @@ const update = (model) => (id, raw) => model.findOneAndUpdate({ _id: id}, raw, {
 const remove = (model) => (id, by) => model.findOneAndUpdate({ _id: id }, { $set: { deletedOn: new Date(), deletedBy: by }}, { "new": true });
 const hardRemove = (model) => (id) => model.find({ '_id': id }).remove();
 
-module.exports = (model) => {
+module.exports = (config) => {
+
+  const model = BaseModel.collect(config);
 
   return {
     findAll: findAll(model),
@@ -23,7 +24,6 @@ module.exports = (model) => {
     getByProperties: getByProperties(model),
     update: update(model),
     remove:remove(model),
-    hardRemove: hardRemove(model),
-    getModel: () => model
+    hardRemove: hardRemove(model)
   }
 };

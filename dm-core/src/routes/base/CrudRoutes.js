@@ -6,12 +6,12 @@ module.exports = (config) => {
 
   const Router = require('express').Router();
 
-  const Model = BaseModel(config);
-  const Service = require('services/base/CrudService')(Model);
+  const Model = BaseModel.collect(config);
+  const Service = require('services/base/CrudService')(config);
 
   Router.get('/', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.findAll(req.requestor)));
   Router.get('/:id', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.getById(req.requestor, req.params.id, req.query.deleted)));
-  Router.get('/by/:column', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.findSelected(req.requestor, { [req.param.column]: req.query.value }, req.query.deleted)));
+  Router.get('/by/:column', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.getByProperty(req.requestor, { [req.param.column]: req.query.value }, req.query.deleted)));
 
   Router.post('/',
     ValidationHelper.modelValidator(Model),

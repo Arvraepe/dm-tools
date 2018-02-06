@@ -9,7 +9,7 @@ const names = fs.readdirSync(`${Dir}/src/domain/configurations`)
 
 module.exports = (App) => names.forEach((model) => {
 
-  const config = require(`domain/configuration/${StringHelper.camelize(model)}`);
+  const config = require(`domain/configurations/${StringHelper.camelize(model)}`);
 
   App.use(`/${config.resource}`, CrudRoutes(config));
 });

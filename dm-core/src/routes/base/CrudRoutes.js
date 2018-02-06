@@ -12,12 +12,12 @@ module.exports = (config) => {
   Router.get('/by/:column', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.findSelected(req.requestor, { [req.param.column]: req.query.value }, req.query.deleted)));
 
   Router.post('/',
-    ValidationHelper.modelValidator(model),
+    ValidationHelper.modelValidator(Model),
     (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.create(req.requestor, req.body))
   );
 
   Router.put('/:id',
-    ValidationHelper.modelValidator(model),
+    ValidationHelper.modelValidator(Model),
     (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.update(req.requestor, req.body))
   );
 

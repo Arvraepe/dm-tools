@@ -20,4 +20,4 @@ App.use(require('middleware/Authentication')());
 
 require('helpers/RouteHelper')(App);
 
-App.listen(Config.port, () => console.log(`Started REMUZ Repository on port ${Config.port}...`));
+App.listen(Config.port, () => console.log(`Started DM-TOOLS Repository on port ${Config.port}...`));

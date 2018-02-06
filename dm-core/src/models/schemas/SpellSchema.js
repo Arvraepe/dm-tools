@@ -2,7 +2,7 @@ const AuditSchema = require('models/schemas/AuditSchema');
 module.exports = R.mergeAll([
   AuditSchema,
   {
-    "name": String,
+    "name": { type: String, unique: true },
     "level": Number,
     "school": String,
     "time": Array,

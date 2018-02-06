@@ -17,7 +17,18 @@ module.exports = (config) => {
   });
 
   Router.get('/:id', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.getById(req.requestor, req.params.id, req.query.deleted)));
-  Router.get('/by/:column', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.getByProperty(req.requestor, { [req.params.column]: new RegExp(req.query.value, 'i') }, req.query.deleted)));
+  Router.get('/by/:column', (req, res) => {
+
+    const column = Model.schema.paths[req.params.column];
+
+    if (column && column.instance === 'Number') {
+      const value = parseInt(req.query.value, 10);
+      ResponseHelper.promiseResponseHandler(req, res, Service.getByProperty(req.requestor, { [req.params.column]: value }, req.query.deleted))
+    } else {
+      ResponseHelper.promiseResponseHandler(req, res, Service.getByProperty(req.requestor, { [req.params.column]: new RegExp(req.query.value, 'i') }, req.query.deleted))
+    }
+
+  });
 
   Router.post('/',
     ValidationHelper.modelValidator(Model),
@@ -28,6 +39,10 @@ module.exports = (config) => {
     ValidationHelper.modelValidator(Model),
     (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.update(req.requestor, req.body))
   );
+
+  Router.post('/search', (req, res) => {
+    ResponseHelper.promiseResponseHandler(req, res, Service.getByProperty(req.requestor, req.body, req.query.deleted));
+  });
 
   Router.delete('/:id', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.remove(req.requestor, req.params.id)));
 

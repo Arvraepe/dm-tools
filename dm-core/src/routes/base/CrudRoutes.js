@@ -1,10 +1,11 @@
 const Router = require('express').Router();
+const BaseModel = require('models/base/BaseModel');
 const ResponseHelper = require('helpers/ResponseHelper');
 const ValidationHelper = require('helpers/ValidationHelper');
 
-module.exports = (model) => {
-
-  const Service = require('services/base/CrudService')(model);
+module.exports = (config) => {
+  const Model = BaseModel(config);
+  const Service = require('services/base/CrudService')(Model);
 
   Router.get('/', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.findAll(req.requestor)));
   Router.get('/:id', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.getById(req.requestor, req.params.id, req.query.deleted)));

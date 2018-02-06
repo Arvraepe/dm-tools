@@ -11,5 +11,5 @@ module.exports = (App) => names.forEach((model) => {
 
   const config = require(`domain/configuration/${StringHelper.camelize(model)}`);
 
-  App.use(`/${model}`, CrudRoutes(config));
+  App.use(`/${config.resource}`, CrudRoutes(config));
 });

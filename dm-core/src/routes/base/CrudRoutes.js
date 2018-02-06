@@ -11,7 +11,7 @@ module.exports = (config) => {
 
   Router.get('/', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.findAll(req.requestor)));
   Router.get('/:id', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.getById(req.requestor, req.params.id, req.query.deleted)));
-  Router.get('/by/:column', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.getByProperty(req.requestor, { [req.param.column]: req.query.value }, req.query.deleted)));
+  Router.get('/by/:column', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.getByProperty(req.requestor, { [req.params.column]: req.query.value }, req.query.deleted)));
 
   Router.post('/',
     ValidationHelper.modelValidator(Model),

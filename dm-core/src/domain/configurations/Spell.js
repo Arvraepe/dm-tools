@@ -1,4 +1,4 @@
 module.exports = {
-  name: 'spell',
+  name: 'Spell',
   resource: 'spells'
 };

@@ -1,9 +1,11 @@
-const Router = require('express').Router();
 const BaseModel = require('models/base/BaseModel');
 const ResponseHelper = require('helpers/ResponseHelper');
 const ValidationHelper = require('helpers/ValidationHelper');
 
 module.exports = (config) => {
+
+  const Router = require('express').Router();
+
   const Model = BaseModel(config);
   const Service = require('services/base/CrudService')(Model);
 

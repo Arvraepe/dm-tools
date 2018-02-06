@@ -14,6 +14,7 @@ const remove = (model) => (id, by) => model.findOneAndUpdate({ _id: id }, { $set
 const hardRemove = (model) => (id) => model.find({ '_id': id }).remove();
 
 module.exports = (model) => {
+
   return {
     findAll: findAll(model),
     findSelected: findSelected(model),
@@ -22,6 +23,7 @@ module.exports = (model) => {
     getByProperties: getByProperties(model),
     update: update(model),
     remove:remove(model),
-    hardRemove: hardRemove(model)
+    hardRemove: hardRemove(model),
+    getModel: () => model
   }
 };

@@ -1,3 +1,4 @@
 module.exports = {
-  name: 'cult'
+  name: 'Cult',
+  resource: 'cults'
 };

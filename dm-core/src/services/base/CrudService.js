@@ -24,9 +24,10 @@ module.exports = (config) => {
   const getById = (requestor, id, includeDeleted) => Repository.getById(id, includeDeleted);
   const remove = (requestor, id) => Repository.remove(id, requestor);
   const hardRemove = (requestor, id) => Repository.hardRemove(id);
+  const truncate = (requestor) => Repository.truncate();
 
   return {
-    findAll, getByProperty, create, getById, update, remove, hardRemove, fullTextSearch
+    findAll, getByProperty, create, getById, update, remove, hardRemove, fullTextSearch, truncate
   }
 
 };

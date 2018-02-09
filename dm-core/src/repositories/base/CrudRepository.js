@@ -11,6 +11,7 @@ const create = (model) => (raw) => new model(raw).save().then((obj) => obj.toObj
 const update = (model) => (id, raw) => model.findOneAndUpdate({ _id: id}, raw, { "new": true });
 const remove = (model) => (id, by) => model.findOneAndUpdate({ _id: id }, { $set: { deletedOn: new Date(), deletedBy: by }}, { "new": true });
 const hardRemove = (model) => (id) => model.find({ '_id': id }).remove();
+const truncate = (model) => () => model.remove();
 const fullTextSearch = (model) => (query, addDeleted = false) => model.find({$text: {$search: query}}).exists('deletedOn', addDeleted).then((list) => list.map((obj) => obj.toObject()));
 
 module.exports = (config) => {
@@ -26,6 +27,7 @@ module.exports = (config) => {
     getByProperties: getByProperties(model),
     update: update(model),
     remove:remove(model),
-    hardRemove: hardRemove(model)
+    hardRemove: hardRemove(model),
+    truncate: truncate(model)
   }
 };

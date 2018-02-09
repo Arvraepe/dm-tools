@@ -46,5 +46,7 @@ module.exports = (config) => {
 
   Router.delete('/:id', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.remove(req.requestor, req.params.id)));
 
+  Router.delete('/', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.truncate(req.requestor)));
+
   return Router;
 };

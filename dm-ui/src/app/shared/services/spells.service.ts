@@ -8,17 +8,11 @@ import {environment} from '../../../environments/environment';
 const toJson = (response) => response.json();
 
 @Injectable()
-export class FileService {
-
-    private _folder = new BehaviorSubject({});
-
-    get folder () { return this._folder.asObservable(); }
+export class SpellService {
 
     constructor(
         private http: HttpClient
     ) {
 
     }
-
-    public getFolder (id) {}
 }

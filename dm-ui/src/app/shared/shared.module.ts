@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {RoutingModule} from './../routing.module.ts';
+import {RoutingModule} from './../routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
 import {SpellService} from "./services/spells.service";

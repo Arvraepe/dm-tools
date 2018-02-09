@@ -1,60 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-//colors
-$primary-red: #d43f5a;
-$primary-blue: #D7E1E5;
-$primary-yellow: #FDDE79;
-$primary-green: #86c65b;
-$secondary-green: #CCEBA6;
-$primary-blue-green: #A5DAD6;
-$primary-purple: #583EC8;
-$primary-light-purple: #6158E0;
-$primary-white: #FDFDFD;
-$primary-gray: #333;
-
-$background-purple: #1D1A3A;
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Alegreya', serif;
+}
 
 body {
-    background-color: $background-purple;
-    font-family: 'Titillium Web', sans-serif;
-    color: $primary-white;
-    letter-spacing: 1px;
-    margin: 0;
+    font-family: 'Roboto Slab', serif;
 }
-
-.landing-page {
-    height: 100vh;
-    font-size: 100%;
-    background-color: $primary-white !important;
-}
-
-.page-title {
-  .btn {
-    font-size: 16px;
-  }
-}
-
-.row {
-    margin-top: 24px;
-}
-
-.error-message {
-    color: $primary-red;
-}
-
-.code-emphasize {
-    display: inline-block;
-    padding: 2px 8px 2px 8px;
-    background-color: $primary-white;
-    color: $primary-red;
-    border-radius: 2px;
-}
-
-@import "styles/input";
-@import "styles/header";
-@import "styles/block";
-@import "styles/badge";
-@import "styles/button";
-@import "styles/label";
-@import "styles/slider";
-@import "styles/table";
-@import "styles/overrides";

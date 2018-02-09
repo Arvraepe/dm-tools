@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
-import {SharedModule} from './shared/shared.module.ts';
+import {SharedModule} from './shared/shared.module';
 import 'rxjs/add/operator/throttle';
 import 'rxjs/add/observable/interval';
 import {ShopsModule} from "./shops/shops.module";

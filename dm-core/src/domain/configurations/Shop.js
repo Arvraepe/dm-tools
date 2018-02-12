@@ -1,4 +1,5 @@
 module.exports = {
   name: 'Shop',
-  resource: 'shops'
+  resource: 'shops',
+  routes: require('routes/ShopRoutes')
 };

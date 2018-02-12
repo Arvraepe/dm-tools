@@ -57,5 +57,11 @@ module.exports = (config) => {
 
   Router.delete('/', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.truncate(req.requestor)));
 
+
+  // Initialize custom routes if set
+  if (config.routes) {
+    config.routes(config, Router);
+  }
+
   return Router;
 };

@@ -23,6 +23,7 @@
     "jsonwebtoken": "^8.1.0",
     "minimist": "^1.2.0",
     "mongoose": "^4.13.6",
+    "node-fetch": "^2.0.0",
     "npm": "^5.5.1",
     "ramda": "^0.25.0",
     "request": "^2.83.0",

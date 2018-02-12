@@ -1,11 +1,15 @@
 const request = require('request');
 
-const cults = require('./data/cults');
+const cultFiles = [
+    './data/cults'
+];
+
 const spellFiles = [
     './data/spells/spells-phb',
     './data/spells/spells-scag',
     './data/spells/spells-xge'
 ];
+
 const creatureFiles = [
     './data/bestiary/bestiary-dmg',
     './data/bestiary/bestiary-mm',
@@ -29,6 +33,6 @@ request.delete({ url: 'http://localhost:8080/cults'}, (error, response, body) =>
 request.delete({ url: 'http://localhost:8080/creatures'}, (error, response, body) => console.log("Creatures Truncated: " + JSON.parse(body).n));
 
 // Insert records
-creatureFiles.forEach((file) => require(file).monster.forEach((item) => request.post({ url:'http://localhost:8080/creatures', json: item })));
-spellFiles.forEach((file) => require(file).spell.forEach((item) => request.post({ url:'http://localhost:8080/spells', json: item })));
-cults.cult.forEach((item) => request.post({ url:'http://localhost:8080/cults', json: item }));
+creatureFiles.forEach((file) => request.post({ url:'http://localhost:8080/creatures', json: require(file).monster }));
+spellFiles.forEach((file) => request.post({ url:'http://localhost:8080/spells', json: require(file).spell }));
+cultFiles.forEach((file) => request.post({ url:'http://localhost:8080/cults', json: require(file).cult }));

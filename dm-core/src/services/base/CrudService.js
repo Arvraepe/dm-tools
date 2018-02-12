@@ -11,6 +11,18 @@ module.exports = (config) => {
     return Repository.create(raw);
   };
 
+  const createMultiple = (requestor = { _id: 'SYSTEM' }, raws) => {
+
+    return Promise.all(raws.map((raw) => {
+        raw.createdBy = requestor._id;
+        raw.createdOn = new Date();
+
+        return Repository.create(raw);
+      })
+    );
+
+  };
+
   const update = (requestor = { _id: 'SYSTEM' }, raw) => {
     raw.lastModifiedBy = requestor._id;
     raw.lastModifiedOn = new Date();
@@ -27,7 +39,7 @@ module.exports = (config) => {
   const truncate = (requestor) => Repository.truncate();
 
   return {
-    findAll, getByProperty, create, getById, update, remove, hardRemove, fullTextSearch, truncate
+    findAll, getByProperty, create, getById, update, remove, hardRemove, fullTextSearch, truncate, createMultiple
   }
 
 };

@@ -3,6 +3,7 @@ const BaseModel = require('models/base/BaseModel');
 const BaseService = require('services/base/CrudService');
 const ResponseHelper = require('helpers/ResponseHelper');
 const ValidationHelper = require('helpers/ValidationHelper');
+const ArrayHelper = require('helpers/ArrayHelper');
 
 module.exports = (config) => {
 
@@ -32,7 +33,15 @@ module.exports = (config) => {
 
   Router.post('/',
     ValidationHelper.modelValidator(Model),
-    (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.create(req.requestor, req.body))
+    (req, res) => {
+
+      if (ArrayHelper.isArray(req.body)) {
+        ResponseHelper.promiseResponseHandler(req, res, Service.createMultiple(req.requestor, req.body))
+      } else {
+        ResponseHelper.promiseResponseHandler(req, res, Service.create(req.requestor, req.body))
+      }
+
+    }
   );
 
   Router.put('/:id',

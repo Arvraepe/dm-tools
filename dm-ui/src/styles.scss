@@ -16,6 +16,10 @@ body {
     display: flex;
 }
 
+.clickable {
+    &:hover { cursor: pointer; }
+}
+
 app-root {
     display: flex;
     width: 100%;
@@ -24,6 +28,8 @@ app-root {
 .site-container {
     display: flex;
     width: 100%;
+
+    flex-direction: column;
 }
 
 .black-background {

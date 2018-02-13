@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'dm-login',
@@ -21,7 +22,7 @@ import {Component} from '@angular/core';
                     </div>
                 </form>
                 <div style="margin-top: 12px; text-align: right;">
-                    <span class="button">Login</span>
+                    <span class="button" (click)="login()">Login</span>
                 </div>
             </div>
         </div>
@@ -30,4 +31,11 @@ import {Component} from '@angular/core';
 })
 export class LoginComponent {
 
+    constructor (
+        private router:Router
+    ) {}
+
+    login () {
+        this.router.navigateByUrl('/entities/spells');
+    }
 }

@@ -1,10 +1,46 @@
 @import "../../../../styles/variables";
 
-.header {
-
+:host {
     background-color: $primary-black;
     color: $primary-white;
 
     height: 100px;
     width: 100%;
+
+    display: flex;
+
+    .header {
+        display: flex;
+
+        justify-content: flex-start;
+        align-items: stretch;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img { height: 80px; }
+
+            margin: 0 8px 0 8px;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0 12px 0 12px;
+            min-width: 100px;
+
+            border-bottom: 4px solid $primary-black;
+
+            &:hover {
+                border-bottom: 4px solid red;
+                background-color: lighten($primary-black, 5);
+            }
+        }
+
+        .horizontal-spacer { width: 45px; }
+    }
 }

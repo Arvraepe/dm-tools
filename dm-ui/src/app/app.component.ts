@@ -30,4 +30,8 @@ export class AppComponent {
         return this.path === '/login';
     }
 
+    hasPadding () {
+        return this.path !== '/login';
+    }
+
 }

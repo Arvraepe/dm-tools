@@ -1,7 +1,15 @@
+@import "./styles/variables";
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Alegreya', serif;
 }
 
 body {
     font-family: 'Roboto Slab', serif;
+    margin: 0;
+    padding: 0;
+
+    background-color: $primary-white;
+
+    min-height: 100vh;
 }

@@ -17,7 +17,10 @@ module.exports = (config) => {
     else ResponseHelper.promiseResponseHandler(req, res, Service.findAll(req.requestor, req.query.deleted));
   });
 
+  Router.get('/meta', (req, res) => ResponseHelper.successResponse(req, res, config));
+
   Router.get('/:id', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.getById(req.requestor, req.params.id, req.query.deleted)));
+
   Router.get('/by/:column', (req, res) => {
 
     const column = Model.schema.paths[req.params.column];

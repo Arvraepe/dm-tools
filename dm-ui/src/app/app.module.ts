@@ -5,6 +5,8 @@ import 'rxjs/add/operator/throttle';
 import 'rxjs/add/observable/interval';
 import {ShopsModule} from "./shops/shops.module";
 import {DashboardModule} from "./dashboard/dashboard.module";
+import {EntitiesModule} from "./entities/entities.module";
+import {AuthenticationModule} from "./authentication/authentication.module";
 
 @NgModule({
     declarations: [
@@ -13,7 +15,9 @@ import {DashboardModule} from "./dashboard/dashboard.module";
     imports: [
         SharedModule,
         ShopsModule,
-        DashboardModule
+        EntitiesModule,
+        DashboardModule,
+        AuthenticationModule
     ],
     providers: [],
     bootstrap: [AppComponent]

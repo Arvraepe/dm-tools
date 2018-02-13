@@ -4,6 +4,7 @@ import {RoutingModule} from './../routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
 import {SpellService} from "./services/spells.service";
+import {HeaderComponent} from "./components/header/header.component";
 
 const modules = [
     BrowserModule,
@@ -12,10 +13,14 @@ const modules = [
     FormsModule
 ];
 
+const components = [
+  HeaderComponent
+];
+
 @NgModule({
-    declarations: [],
+    declarations: [...components],
     imports: [...modules],
-    exports: [...modules],
+    exports: [...modules, ...components],
     providers: [SpellService]
 })
 export class SharedModule {

@@ -1,5 +1,25 @@
 @import "../../../../styles/variables";
 
-body:host {
-    background-color: $primary-black;
+:host {
+
+    width: 100%;
+
+    .login-box-container {
+        display: flex;
+
+        min-height: 100vh;
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-box {
+        width: 40%;
+        background: $primary-white;
+        border-radius: 5px;
+        padding: 24px;
+
+        color: $primary-black;
+    }
 }
+

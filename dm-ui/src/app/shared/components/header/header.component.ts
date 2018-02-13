@@ -5,7 +5,7 @@ import {ActivatedRoute} from "@angular/router";
     selector: 'dm-header',
     template: `
        <div class="header">
-            t
+            
        </div>
     `,
     styleUrls: ['./header.scss']

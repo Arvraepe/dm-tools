@@ -46,4 +46,8 @@ export class EntityService {
     update (entity, body) {
         return this.http.put(`${this.getBase(entity)}/${body._id}`, body).toPromise();
     }
+
+    filter (filter) {
+        return this.http.post(`${this.getBase(filter.entity)}/search`, JSON.parse(filter.when)).toPromise();
+    }
 }

@@ -35,6 +35,10 @@ export class EntityService {
         return this.http.get(`${this.getBase()}`).toPromise();
     }
 
+    getByName (name) {
+        return this.http.get(`${this.getBase()}/by/name?value=${name}`).toPromise();
+    }
+
     get (id) {
         return this.http.get(`${this.getBase()}/${id}`).toPromise()
             .then((entity) => this._entity.next(entity));

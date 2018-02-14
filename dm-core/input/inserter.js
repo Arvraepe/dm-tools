@@ -1,4 +1,4 @@
-const request = require('request');
+const fetch = require('node-fetch');
 
 const cultFiles = [
     './data/cults'
@@ -26,13 +26,18 @@ const creatureFiles = [
     // './data/bestiary/bestiary-pota'
 ];
 
+const headers = {
+    'Content-Type': 'application/json'
+};
+
 
 // Truncate records
-request.delete({ url: 'http://localhost:8080/spells'}, (error, response, body) => console.log("Spells Truncated: " + JSON.parse(body).n));
-request.delete({ url: 'http://localhost:8080/cults'}, (error, response, body) => console.log("Cults Truncated: " + JSON.parse(body).n));
-request.delete({ url: 'http://localhost:8080/creatures'}, (error, response, body) => console.log("Creatures Truncated: " + JSON.parse(body).n));
-
-// Insert records
-creatureFiles.forEach((file) => request.post({ url:'http://localhost:8080/creatures', json: require(file).monster }));
-spellFiles.forEach((file) => request.post({ url:'http://localhost:8080/spells', json: require(file).spell }));
-cultFiles.forEach((file) => request.post({ url:'http://localhost:8080/cults', json: require(file).cult }));
+Promise.all([
+    fetch('http://localhost:8080/spells', { method: 'delete' }).then((result) => console.log('Truncated spells')),
+    fetch('http://localhost:8080/cults', { method: 'delete' }).then((result) => console.log('Truncated cults')),
+    fetch('http://localhost:8080/creatures', { method: 'delete' }).then((result) => console.log('Truncated creatures'))
+]).then(() => {
+    creatureFiles.forEach((file) => fetch('http://localhost:8080/creatures', { method: 'post', body: JSON.stringify(require(file).monster), headers }).then((result) => console.log(`Created creatures [${file}]`)));
+    spellFiles.forEach((file) => fetch('http://localhost:8080/spells', { method: 'post', body: JSON.stringify(require(file).spell), headers }).then((result) => console.log(`Created spells [${file}]`)));
+    cultFiles.forEach((file) => fetch('http://localhost:8080/cults', { method: 'post', body: JSON.stringify(require(file).cult), headers }).then((result) => console.log(`Created cults [${file}]`)));
+});

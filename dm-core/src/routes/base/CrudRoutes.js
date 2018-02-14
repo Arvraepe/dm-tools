@@ -52,9 +52,7 @@ module.exports = (config) => {
     (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.update(req.requestor, req.body))
   );
 
-  Router.post('/search', (req, res) => {
-    ResponseHelper.promiseResponseHandler(req, res, Service.getByProperty(req.requestor, req.body, req.query.deleted));
-  });
+  Router.post('/search', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.getByProperty(req.requestor, req.body, req.query.deleted)));
 
   Router.delete('/:id', (req, res) => ResponseHelper.promiseResponseHandler(req, res, Service.remove(req.requestor, req.params.id)));
 

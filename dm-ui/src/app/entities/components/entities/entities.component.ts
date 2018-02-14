@@ -7,7 +7,7 @@ import {EntityComponentMappings} from "../../mappings/entities.mappings";
 @Component({
     selector: 'dm-entities',
     template: `
-        <div class="box">
+        <div class="box" *ngIf="meta">
             <section *ngIf="meta" class="hero is-light">
               <div class="hero-body">
                 <div class="container">
@@ -17,6 +17,11 @@ import {EntityComponentMappings} from "../../mappings/entities.mappings";
                 </div>
               </div>
             </section>
+
+            <div style="margin-top: 12px;">
+                <input class="input" type="text" placeholder="Search {{ meta.resource }}" [(ngModel)]="query" (keyup)="filter(query)" />
+                <!--<label class="checkbox"><input [(ngModel)]="isSimpleSearch" type="checkbox"> Name only</label>-->
+            </div>
 
             <div class="table-container">
                 <table class="table">
@@ -36,7 +41,8 @@ export class EntitiesComponent {
 
     private meta;
     private entities;
-    private selected;
+    private query;
+    private isSimpleSearch = true;
 
     constructor (
         private route: ActivatedRoute,
@@ -66,6 +72,11 @@ export class EntitiesComponent {
 
     getEntityColumns (meta) {
         return EntityComponentMappings[this.meta.resource].columns;
+    }
+
+    filter (query) {
+        if (this.isSimpleSearch) this.entityService.getByName(query).then((results) => this.entities = results);
+        else this.entityService.search(query).then((results) => this.entities = results);
     }
 
 }

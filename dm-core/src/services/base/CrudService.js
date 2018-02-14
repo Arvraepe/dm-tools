@@ -11,7 +11,7 @@ module.exports = (config) => {
     return Repository.create(raw);
   };
 
-  const createMultiple = (requestor = { _id: 'SYSTEM' }, raws) => Promise.all(raws.map((raw) => create(raw)));
+  const createMultiple = (requestor = { _id: 'SYSTEM' }, raws) => Promise.all(raws.map((raw) => create(undefined, raw)));
 
   const update = (requestor = { _id: 'SYSTEM' }, raw) => {
     raw.lastModifiedBy = requestor._id;

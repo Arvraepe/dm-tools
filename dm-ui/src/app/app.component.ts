@@ -7,7 +7,11 @@ import {Router} from "@angular/router";
     template: `
         <div class="site-container" [ngClass]="{ 'black-background': hasBlackBackground() }">
             <dm-header *ngIf="hasHeader()"></dm-header>
-            <router-outlet></router-outlet>
+            <div class="flexed flex-horizontal-centered">
+                <div class="flexed content-container">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
         </div>
     `
 })

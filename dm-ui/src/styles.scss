@@ -40,3 +40,15 @@ app-root {
 .deemphasized {
     color: $primary-gray;
 }
+
+.flexed {
+    display: flex;
+}
+
+.flex-horizontal-centered {
+    justify-content: center;
+}
+
+.content-container {
+    width: 50%;
+}

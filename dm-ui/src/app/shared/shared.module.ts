@@ -8,6 +8,7 @@ import {HeaderComponent} from "./components/header/header.component";
 import {BackComponent} from "./components/back/back.component";
 import {SpacerComponent} from "./components/spacer/spacer.component";
 import {SourceComponent} from "./components/source/source.component";
+import {HorizontalDividerComponent} from "./components/horizontal-divider/horizontal-divider.component";
 
 const modules = [
     BrowserModule,
@@ -20,6 +21,7 @@ const components = [
     HeaderComponent,
     BackComponent,
     SpacerComponent,
+    HorizontalDividerComponent,
     SourceComponent
 ];
 

@@ -1,4 +1,5 @@
 const modelValidator = (type) => (req, res, next) => {
+
   const model = new type(req.body);
   const error = model.validateSync();
 

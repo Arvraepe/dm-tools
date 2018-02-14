@@ -2,6 +2,7 @@ import {CultComponent} from "../components/entity/cult/cult.component";
 import {SpellComponent} from "../components/entity/spells/spell.component";
 import {CreatureComponent} from "../components/entity/creature/creature.component";
 import {ShopComponent} from "../components/entity/shop/shop.component";
+import {FilterComponent} from "../components/entity/filter/filter.component";
 
 export const EntityComponentMappings = {
     cults: {
@@ -34,7 +35,19 @@ export const EntityComponentMappings = {
             { label: 'Name', path: ['name'] }
         ],
         actions: [
-            { label: 'Build', icon: 'fa-gavel', data: {  } }
+            { global: true, label: 'Build', icon: 'fa-gavel', data: {  } }
         ]
+    },
+
+    filters: {
+        entity: FilterComponent,
+        columns: [
+            { label: 'Name', path: ['name'] },
+        ],
+        actions: [
+            { global: true, label: 'Build', icon: 'fa-gavel', data: {  } },
+            { global: false, label: 'Edit', icon: 'fa-pencil', data: {  } },
+            { global: false, label: 'Remove', icon: 'fa-trash', data: {  } }
+        ],
     }
 };

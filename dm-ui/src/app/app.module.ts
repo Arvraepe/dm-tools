@@ -11,13 +11,15 @@ import {SpellComponent} from "./entities/components/entity/spells/spell.componen
 import {CultComponent} from "./entities/components/entity/cult/cult.component";
 import {CreatureComponent} from "./entities/components/entity/creature/creature.component";
 import {ShopComponent} from "./entities/components/entity/shop/shop.component";
+import {FilterComponent} from "./entities/components/entity/filter/filter.component";
 
 // Components that are dynamically loaded need to go here.
 const entryComponents = [
     SpellComponent,
     CultComponent,
     CreatureComponent,
-    ShopComponent
+    ShopComponent,
+    FilterComponent
 ];
 
 @NgModule({

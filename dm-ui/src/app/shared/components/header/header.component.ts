@@ -12,6 +12,7 @@ import {Router, NavigationEnd} from "@angular/router";
             <div [ngClass]="{ active: isActive('shops') }" (click)="goto('shops')" class="link clickable">Shops</div>
             <div [ngClass]="{ active: isActive('creatures') }" (click)="goto('creatures')" class="link clickable">Creatures</div>
             <div [ngClass]="{ active: isActive('cults') }" (click)="goto('cults')" class="link clickable">Cults</div>
+            <div [ngClass]="{ active: isActive('filters') }" (click)="goto('filters')" class="link clickable">Filters</div>
 
        </div>
     `,

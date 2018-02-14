@@ -8,6 +8,13 @@ import {EntityComponentMappings} from "../../mappings/entities.mappings";
 @Component({
     selector: 'dm-entity',
     template: `
+
+        <div *ngIf="meta && (getGlobalEntityActions(meta).length > 0 || getDetailEntityActions(meta).length > 0)" class="flexed" style="margin-bottom: 12px;">
+            <span [ngClass]="{ 'margin-right-xs': !last }" class="button button-light" *ngFor="let action of getGlobalEntityActions(meta); let last = last;"><i *ngIf="action.icon" class="fa" style="margin-right: 8px;" [ngClass]="action.icon"> </i> {{ action.label }}</span>
+            <dm-horizontal-divider></dm-horizontal-divider>
+            <span [ngClass]="{ 'margin-right-xs': !last }" style="margin-right: 8px;" class="button button-light" *ngFor="let action of getDetailEntityActions(meta); let last = last;"><i *ngIf="action.icon" class="fa" style="margin-right: 8px;" [ngClass]="action.icon"> </i> {{ action.label }}</span>
+        </div>
+
        <ng-template dm-entity-host></ng-template>
     `,
     styleUrls: ['./entity.scss']
@@ -57,6 +64,14 @@ export class EntityComponent implements OnInit{
             }
 
         });
+    }
+
+    getGlobalEntityActions (meta) {
+        return EntityComponentMappings[meta.resource].actions.filter((action) => action.global);
+    }
+
+    getDetailEntityActions (meta) {
+        return EntityComponentMappings[meta.resource].actions.filter((action) => !action.global);
     }
 
 }

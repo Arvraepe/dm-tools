@@ -20,4 +20,6 @@ App.use(require('middleware/Authentication')());
 
 require('helpers/RouteHelper')(App);
 
+App.use('/schemas', require('routes/SchemaRoutes'));
+
 App.listen(Config.port, () => console.log(`Started DM-TOOLS Repository on port ${Config.port}...`));

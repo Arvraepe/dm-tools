@@ -7,8 +7,8 @@ import {EntityComponentMappings} from "../../mappings/entities.mappings";
 @Component({
     selector: 'dm-entities',
     template: `
-        <div *ngIf="meta && getEntityActions(meta).length > 0" style="margin-bottom: 12px;">
-            <span class="button button-light" *ngFor="let action of getEntityActions(meta)"><i *ngIf="action.icon" class="fa" style="margin-right: 8px;" [ngClass]="action.icon"> </i> {{ action.label }}</span>
+        <div *ngIf="meta && getGlobalEntityActions(meta).length > 0" style="margin-bottom: 12px;">
+            <span class="button button-light" *ngFor="let action of getGlobalEntityActions(meta)"><i *ngIf="action.icon" class="fa" style="margin-right: 8px;" [ngClass]="action.icon"> </i> {{ action.label }}</span>
         </div>
 
         <div class="box" *ngIf="meta">
@@ -78,8 +78,8 @@ export class EntitiesComponent {
         return EntityComponentMappings[meta.resource].columns;
     }
 
-    getEntityActions (meta) {
-        return EntityComponentMappings[meta.resource].actions;
+    getGlobalEntityActions (meta) {
+        return EntityComponentMappings[meta.resource].actions.filter((action) => action.global);
     }
 
     filter (query) {

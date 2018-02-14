@@ -4,6 +4,6 @@ module.exports = R.mergeAll([
   {
     "name": { type: String, unique: true },
     "entity": String,
-    "where": Object
+    "where": String
   }
 ]);

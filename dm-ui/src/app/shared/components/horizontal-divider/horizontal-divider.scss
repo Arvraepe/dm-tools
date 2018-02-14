@@ -1,0 +1,14 @@
+@import "../../../../styles/variables";
+
+:host {
+    display: flex;
+    justify-content: center;
+
+    margin: 0 8px 0 8px;
+
+    .horizontal-divider-body {
+        width: 2px;
+        border-radius: 5px;
+        background-color: $primary-accent;
+    }
+}

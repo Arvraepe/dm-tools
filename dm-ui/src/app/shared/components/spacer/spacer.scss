@@ -1,0 +1,17 @@
+@import "../../../../styles/variables";
+
+:host {
+    display: flex;
+    justify-content: center;
+
+    height: 4px;
+
+    margin: 18px 0 18px 0;
+
+    .spacer-body {
+        width: 98%;
+        height: 4px;
+        border-radius: 4px;
+        background-color: $primary-accent;
+    }
+}

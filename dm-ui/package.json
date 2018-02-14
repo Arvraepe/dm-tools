@@ -28,6 +28,7 @@
     "flexboxgrid": "^6.3.1",
     "font-awesome": "^4.7.0",
     "moment": "^2.19.1",
+    "ng2-tooltip-directive": "^1.2.3",
     "ramda": "^0.25.0",
     "rxjs": "^5.5.2",
     "socket.io-client": "^2.0.4",

@@ -6,6 +6,8 @@ import {FormsModule} from "@angular/forms";
 import {SpellService} from "./services/spells.service";
 import {HeaderComponent} from "./components/header/header.component";
 import {BackComponent} from "./components/back/back.component";
+import {SpacerComponent} from "./components/spacer/spacer.component";
+import {SourceComponent} from "./components/source/source.component";
 
 const modules = [
     BrowserModule,
@@ -16,13 +18,19 @@ const modules = [
 
 const components = [
     HeaderComponent,
-    BackComponent
+    BackComponent,
+    SpacerComponent,
+    SourceComponent
+];
+
+const directives = [
+
 ];
 
 @NgModule({
-    declarations: [...components],
+    declarations: [...components, ...directives],
     imports: [...modules],
-    exports: [...modules, ...components],
+    exports: [...modules, ...components, ...directives],
     providers: [SpellService]
 })
 export class SharedModule {

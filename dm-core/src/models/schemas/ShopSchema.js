@@ -3,6 +3,7 @@ module.exports = R.mergeAll([
   AuditSchema,
   {
     "name": { type: String },
-    "items": Array
+    "items": Array,
+    "shopkeeper": Object
   }
 ]);

@@ -35,7 +35,7 @@ export class HeaderComponent {
     }
 
     goto (part) {
-        this.router.navigateByUrl(`/entities/${part}/list`);
+        this.router.navigateByUrl(`/entities/${part}`);
     }
 
 }

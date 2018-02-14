@@ -36,6 +36,6 @@ export class LoginComponent {
     ) {}
 
     login () {
-        this.router.navigateByUrl('/entities/spells/5a815083f0b5882239efb258');
+        this.router.navigateByUrl('/entities/spells');
     }
 }

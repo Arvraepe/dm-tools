@@ -5,18 +5,31 @@ import {ShopComponent} from "../components/entity/shop/shop.component";
 
 export const EntityComponentMappings = {
     cults: {
-        entity: CultComponent
+        entity: CultComponent,
+        columns: [
+            { label: 'Name', path: ['name'] },
+            { label: 'Level', path: ['level'] }
+        ]
     },
 
     spells: {
-        entity: SpellComponent
+        entity: SpellComponent,
+        columns: [
+            { label: 'Name', path: ['name'] }
+        ]
     },
 
     creatures: {
-        entity: CreatureComponent
+        entity: CreatureComponent,
+        columns: [
+            { label: 'Name', path: ['name'] }
+        ]
     },
 
     shops: {
-        entity: ShopComponent
+        entity: ShopComponent,
+        columns: [
+            { label: 'Name', path: ['name'] }
+        ]
     }
 };

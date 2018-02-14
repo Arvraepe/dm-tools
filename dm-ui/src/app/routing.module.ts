@@ -8,7 +8,7 @@ import {EntitiesComponent} from "./entities/components/entities/entities.compone
 const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
-    {path: 'entities/:entity/list', component: EntitiesComponent},
+    {path: 'entities/:entity', component: EntitiesComponent},
     {path: 'entities/:entity/:id', component: EntityComponent},
 ];
 

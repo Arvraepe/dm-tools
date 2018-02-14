@@ -1,20 +1,33 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {EntityService} from "../../services/entity.service";
+import * as R from 'ramda';
+import {EntityComponentMappings} from "../../mappings/entities.mappings";
 
 @Component({
     selector: 'dm-entities',
     template: `
-        <h1 class="title" *ngIf="entity">List of {{ meta.resource }}</h1>
-        <div class="table-container">
-            <table class="table">
-                <thead>
-                    <th>Name</th>
-                </thead>
-                <tr *ngFor="let entity of entities" class="clickable" (click)="goto(entity._id)">
-                    <td>{{ entity.name }}</td>
-                </tr>
-            </table>
+        <div class="box">
+            <section *ngIf="meta" class="hero is-light">
+              <div class="hero-body">
+                <div class="container">
+                  <h1 class="title">
+                    List of {{ meta.resource }}
+                  </h1>
+                </div>
+              </div>
+            </section>
+
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <th *ngFor="let column of getEntityColumns(meta)">{{ column.label }}</th>
+                    </thead>
+                    <tr *ngFor="let entity of entities" class="clickable" (click)="goto(entity._id)">
+                        <td *ngFor="let column of getEntityColumns(meta)">{{ getProperty(entity, column.path) }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     `,
     styleUrls: ['./entities.scss']
@@ -45,6 +58,14 @@ export class EntitiesComponent {
 
     goto (id) {
         this.router.navigateByUrl(`/entities/${this.meta.resource}/${id}`);
+    }
+
+    getProperty (entity, path) {
+        return R.view(R.lensPath(path), entity);
+    }
+
+    getEntityColumns (meta) {
+        return EntityComponentMappings[this.meta.resource].columns;
     }
 
 }

@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {DynamicEntityComponent} from "../dynamic-entity.component";
+import {DynamicEntityComponent} from "../../dynamic-entity.component";
 
 @Component({
     selector: 'dm-spell',
@@ -28,7 +28,7 @@ import {DynamicEntityComponent} from "../dynamic-entity.component";
             </p>
 
             <p style="margin-top: 12px;">
-                <span style="margin-right: 4px;" *ngFor="let class of getClasses(data)" class="tag">{{ class.name }}</span>
+                <span style="margin-right: 4px;" *ngFor="let class of getClasses(data)" class="tag is-danger">{{ class.name }}</span>
             </p>
 
             <div style="margin-top: 12px;" *ngFor="let entry of data.entries">

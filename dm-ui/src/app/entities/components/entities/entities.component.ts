@@ -43,6 +43,7 @@ import {EntityComponentMappings} from "../../mappings/entities.mappings";
 })
 export class EntitiesComponent {
 
+    private entityType;
     private meta;
     private entities;
     private query;
@@ -56,13 +57,12 @@ export class EntitiesComponent {
 
         this.route.params.subscribe((params) => {
 
-            // Set the current entity type in the entity service
-            this.entityService.setEntityType(params.entity);
-            this.entityService.getAll().then((entities) => this.entities = entities);
+            this.entityType = params.entity;
+
+            this.entityService.info(this.entityType).then((meta) => this.meta = meta);
+            this.entityService.getAll(this.entityType).then((entities) => this.entities = entities);
 
         });
-
-        this.entityService.meta.subscribe((meta) => this.meta = meta);
 
     }
 
@@ -83,8 +83,8 @@ export class EntitiesComponent {
     }
 
     filter (query) {
-        if (this.isSimpleSearch) this.entityService.getByName(query).then((results) => this.entities = results);
-        else this.entityService.search(query).then((results) => this.entities = results);
+        if (this.isSimpleSearch) this.entityService.getByName(this.entityType, query).then((results) => this.entities = results);
+        else this.entityService.search(this.entityType, query).then((results) => this.entities = results);
     }
 
 }

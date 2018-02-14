@@ -10,6 +10,7 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'entities/:entity', component: EntitiesComponent},
     {path: 'entities/:entity/:id', component: EntityComponent},
+    {path: 'entities/:entity/:id/:view', component: EntityComponent},
 ];
 
 @NgModule({

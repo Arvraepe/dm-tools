@@ -8,57 +8,42 @@ import {environment} from '../../../environments/environment';
 @Injectable()
 export class EntityService {
 
-    private _currentType = new BehaviorSubject(null);
-    private _entity = new BehaviorSubject(null);
-    private _meta = new BehaviorSubject(null);
-
-    get currentType () { return this._currentType.asObservable(); }
-    get meta () { return this._meta.asObservable(); }
-    get entity () { return this._entity.asObservable(); }
-
     constructor(
         private http: HttpClient
     ) {
 
     }
 
-    setEntityType (entity) {
-        this._currentType.next(entity);
-        this.info();
+    getBase (entity) {
+        return `${environment.api}/${entity}`;
     }
 
-    getBase () {
-        return `${environment.api}/${this._currentType.getValue()}`;
+    getAll (entity) {
+        return this.http.get(`${this.getBase(entity)}`).toPromise();
     }
 
-    getAll () {
-        return this.http.get(`${this.getBase()}`).toPromise();
+    getByName (entity, name) {
+        return this.http.get(`${this.getBase(entity)}/by/name?value=${name}`).toPromise();
     }
 
-    getByName (name) {
-        return this.http.get(`${this.getBase()}/by/name?value=${name}`).toPromise();
-    }
-
-    get (id) {
-        return this.http.get(`${this.getBase()}/${id}`).toPromise()
-            .then((entity) => this._entity.next(entity));
+    get (entity, id) {
+        return this.http.get(`${this.getBase(entity)}/${id}`).toPromise();
 
     }
 
-    search (query) {
-        return this.http.get(`${this.getBase()}?q=${query}`).toPromise();
+    search (entity, query) {
+        return this.http.get(`${this.getBase(entity)}?q=${query}`).toPromise();
     }
 
-    find (where) {
-        return this.http.post(`${this.getBase()}`, where).toPromise();
+    find (entity, where) {
+        return this.http.post(`${this.getBase(entity)}`, where).toPromise();
     }
 
-    info () {
-        return this.http.get(`${this.getBase()}/meta`).toPromise()
-            .then((meta) => {
-                this._meta.next(meta);
+    info (entity) {
+        return this.http.get(`${this.getBase(entity)}/meta`).toPromise();
+    }
 
-                return meta;
-            });
+    update (entity, body) {
+        return this.http.put(`${this.getBase(entity)}/${body._id}`, body).toPromise();
     }
 }

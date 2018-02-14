@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {DynamicEntityComponent} from "../dynamic-entity.component";
+import {DynamicEntityComponent} from "../../dynamic-entity.component";
 
 @Component({
     selector: 'dm-creature',

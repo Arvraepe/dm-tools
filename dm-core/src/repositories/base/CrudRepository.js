@@ -12,7 +12,9 @@ const create = (model) => (raw) => {
     .then((obj) => obj.toObject())
     .catch((err) => console.error(err));
 };
-const update = (model) => (id, raw) => model.findOneAndUpdate({ _id: id}, raw, { "new": true });
+const update = (model) => (id, raw) => {
+  return model.findOneAndUpdate({ _id: id }, raw, { new: true });
+};
 const remove = (model) => (id, by) => model.findOneAndUpdate({ _id: id }, { $set: { deletedOn: new Date(), deletedBy: by }}, { "new": true });
 const hardRemove = (model) => (id) => model.find({ '_id': id }).remove();
 const truncate = (model) => () => model.remove();

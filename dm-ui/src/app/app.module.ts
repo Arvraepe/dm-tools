@@ -7,11 +7,12 @@ import {ShopsModule} from "./shops/shops.module";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import {EntitiesModule} from "./entities/entities.module";
 import {AuthenticationModule} from "./authentication/authentication.module";
-import {SpellComponent} from "./entities/components/entity/spells/spell.component";
-import {CultComponent} from "./entities/components/entity/cult/cult.component";
-import {CreatureComponent} from "./entities/components/entity/creature/creature.component";
-import {ShopComponent} from "./entities/components/entity/shop/shop.component";
-import {FilterComponent} from "./entities/components/entity/filter/filter.component";
+import {SpellComponent} from "./entities/components/entity/view/spell/spell.component";
+import {CultComponent} from "./entities/components/entity/view/cult/cult.component";
+import {CreatureComponent} from "./entities/components/entity/view/creature/creature.component";
+import {ShopComponent} from "./entities/components/entity/view/shop/shop.component";
+import {FilterComponent} from "./entities/components/entity/view/filter/filter.component";
+import {FilterEditorComponent} from "./entities/components/entity/editor/filter/filter-editor.component";
 
 // Components that are dynamically loaded need to go here.
 const entryComponents = [
@@ -19,7 +20,8 @@ const entryComponents = [
     CultComponent,
     CreatureComponent,
     ShopComponent,
-    FilterComponent
+    FilterComponent,
+    FilterEditorComponent
 ];
 
 @NgModule({

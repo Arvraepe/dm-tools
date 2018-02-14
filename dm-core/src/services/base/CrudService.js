@@ -17,7 +17,7 @@ module.exports = (config) => {
     raw.lastModifiedBy = requestor._id;
     raw.lastModifiedOn = new Date();
 
-    return Repository.create(raw);
+    return Repository.update(raw._id, raw);
   };
 
   const fullTextSearch = (requestor, query, includeDeleted) => Repository.fullTextSearch(query, includeDeleted);

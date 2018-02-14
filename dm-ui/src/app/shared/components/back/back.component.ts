@@ -10,16 +10,10 @@ import {Router, NavigationEnd} from "@angular/router";
 })
 export class BackComponent {
 
-    private url;
-
-    constructor (
-
-    ) {
-
-    }
+    constructor () {}
 
     back () {
-        window.history.back()
+        window.history.back();
     }
 
 }

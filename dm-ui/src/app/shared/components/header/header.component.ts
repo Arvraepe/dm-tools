@@ -6,6 +6,7 @@ import {Router, NavigationEnd} from "@angular/router";
     template: `
        <div class="header">
             <div class="logo"><img src="../../../../assets/images/dm-tools-logo-white.png" /></div>
+            <!--<div class="logo-text"><i class="fa fa-d-and-d"></i></div>-->
 
             <div [ngClass]="{ active: isActive('spells') }" (click)="goto('spells')" class="link clickable">Spells</div>
             <div [ngClass]="{ active: isActive('shops') }" (click)="goto('shops')" class="link clickable">Shops</div>

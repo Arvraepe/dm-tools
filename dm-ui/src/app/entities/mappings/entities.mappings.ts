@@ -8,27 +8,33 @@ export const EntityComponentMappings = {
         entity: CultComponent,
         columns: [
             { label: 'Name', path: ['name'] }
-        ]
+        ],
+        actions: []
     },
 
     spells: {
         entity: SpellComponent,
         columns: [
             { label: 'Name', path: ['name'] }
-        ]
+        ],
+        actions: []
     },
 
     creatures: {
         entity: CreatureComponent,
         columns: [
             { label: 'Name', path: ['name'] }
-        ]
+        ],
+        actions: []
     },
 
     shops: {
         entity: ShopComponent,
         columns: [
             { label: 'Name', path: ['name'] }
+        ],
+        actions: [
+            { label: 'Build', icon: 'fa-gavel', data: {  } }
         ]
     }
 };

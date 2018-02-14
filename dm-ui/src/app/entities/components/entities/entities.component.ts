@@ -7,6 +7,10 @@ import {EntityComponentMappings} from "../../mappings/entities.mappings";
 @Component({
     selector: 'dm-entities',
     template: `
+        <div *ngIf="meta && getEntityActions(meta).length > 0" style="margin-bottom: 12px;">
+            <span class="button button-light" *ngFor="let action of getEntityActions(meta)"><i *ngIf="action.icon" class="fa" style="margin-right: 8px;" [ngClass]="action.icon"> </i> {{ action.label }}</span>
+        </div>
+
         <div class="box" *ngIf="meta">
             <section *ngIf="meta" class="hero is-light">
               <div class="hero-body">
@@ -71,7 +75,11 @@ export class EntitiesComponent {
     }
 
     getEntityColumns (meta) {
-        return EntityComponentMappings[this.meta.resource].columns;
+        return EntityComponentMappings[meta.resource].columns;
+    }
+
+    getEntityActions (meta) {
+        return EntityComponentMappings[meta.resource].actions;
     }
 
     filter (query) {

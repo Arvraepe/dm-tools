@@ -7,8 +7,7 @@ export const EntityComponentMappings = {
     cults: {
         entity: CultComponent,
         columns: [
-            { label: 'Name', path: ['name'] },
-            { label: 'Level', path: ['level'] }
+            { label: 'Name', path: ['name'] }
         ]
     },
 

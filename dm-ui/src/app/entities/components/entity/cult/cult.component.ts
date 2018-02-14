@@ -5,7 +5,26 @@ import {DynamicEntityComponent} from "../dynamic-entity.component";
 @Component({
     selector: 'dm-cult',
     template: `
-       <h1 class="title" *ngIf="data">{{ data.name }}</h1>
+       <div class="box">
+
+            <section class="hero is-light">
+              <div class="hero-body">
+                <div class="container">
+                  <h1 class="title">
+                    {{ data.name }}
+                  </h1>
+                </div>
+              </div>
+            </section>
+
+            <div style="margin-top: 12px;" *ngFor="let entry of data.text">
+                <div *ngIf="!hasSubEntries(entry)">{{ entry }}</div>
+                <div *ngIf="hasSubEntries(entry)">
+                    <strong>{{ entry.title }}</strong><br />
+                    <p style="margin-bottom: 12px;">{{ entry.text }}</p>
+                </div>
+            </div>
+        </div>
     `,
     styleUrls: ['./cult.scss']
 })
@@ -17,6 +36,10 @@ export class CultComponent implements DynamicEntityComponent{
 
     ) {
 
+    }
+
+    hasSubEntries (entry) {
+        return typeof entry === 'object';
     }
 
 }

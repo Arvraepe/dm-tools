@@ -77,7 +77,6 @@ export class SpellComponent implements DynamicEntityComponent {
     }
 
     hasSubEntries (entry) {
-        console.log(typeof entry === 'object');
         return typeof entry === 'object';
     }
 

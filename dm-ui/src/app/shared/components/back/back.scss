@@ -1,0 +1,32 @@
+@import "../../../../styles/variables";
+
+:host {
+    position: absolute;
+    left: 24px;
+    top: 124px;
+
+    .back-btn {
+
+        $size: 48px;
+
+        width: $size;
+        height: $size;
+        line-height: $size;
+        font-size: 24px;
+
+        text-align: center;
+
+        border-radius: 50%;
+
+        margin-left: -2px;
+
+        background-color: $primary-accent;
+        color: $primary-white;
+
+        &:hover {
+            background-color: lighten($primary-accent, 5);
+        }
+
+
+    }
+}

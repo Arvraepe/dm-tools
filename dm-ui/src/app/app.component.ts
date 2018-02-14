@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
             <dm-header *ngIf="hasHeader()"></dm-header>
             <div class="flexed flex-horizontal-centered">
                 <div class="flexed content-container">
+                    <dm-back *ngIf="hasBackButton()"></dm-back>
                     <router-outlet></router-outlet>
                 </div>
             </div>
@@ -35,6 +36,10 @@ export class AppComponent {
     }
 
     hasPadding () {
+        return this.path !== '/login';
+    }
+
+    hasBackButton () {
         return this.path !== '/login';
     }
 

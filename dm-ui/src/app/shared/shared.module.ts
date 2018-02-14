@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
 import {SpellService} from "./services/spells.service";
 import {HeaderComponent} from "./components/header/header.component";
+import {BackComponent} from "./components/back/back.component";
 
 const modules = [
     BrowserModule,
@@ -14,7 +15,8 @@ const modules = [
 ];
 
 const components = [
-  HeaderComponent
+    HeaderComponent,
+    BackComponent
 ];
 
 @NgModule({

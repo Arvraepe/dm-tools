@@ -8,11 +8,13 @@ import {environment} from '../../../environments/environment';
 @Injectable()
 export class EntityService {
 
-    private _current = new BehaviorSubject(null);
+    private _currentType = new BehaviorSubject(null);
+    private _entity = new BehaviorSubject(null);
     private _meta = new BehaviorSubject(null);
 
-    get current () { return this._current.asObservable(); }
+    get currentType () { return this._currentType.asObservable(); }
     get meta () { return this._meta.asObservable(); }
+    get entity () { return this._entity.asObservable(); }
 
     constructor(
         private http: HttpClient
@@ -21,16 +23,22 @@ export class EntityService {
     }
 
     setEntityType (entity) {
-        this._current.next(entity);
+        this._currentType.next(entity);
         this.info();
     }
 
     getBase () {
-        return `${environment.api}/${this._current.getValue()}`;
+        return `${environment.api}/${this._currentType.getValue()}`;
     }
 
     getAll () {
         return this.http.get(`${this.getBase()}`).toPromise();
+    }
+
+    get (id) {
+        return this.http.get(`${this.getBase()}/${id}`).toPromise()
+            .then((entity) => this._entity.next(entity));
+
     }
 
     search (query) {

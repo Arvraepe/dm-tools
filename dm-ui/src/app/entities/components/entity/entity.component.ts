@@ -69,8 +69,8 @@ export class EntityComponent implements OnInit{
         const viewContainerRef = this.dmEntityHost.viewContainerRef;
         viewContainerRef.clear();
 
-        this.dmEntityHostComponent = viewContainerRef.createComponent(componentFactory);
-        (<DynamicEntityComponent>this.dmEntityHostComponent.instance).data = entity;
+        const dmEntityHostComponent = viewContainerRef.createComponent(componentFactory);
+        (<DynamicEntityComponent>dmEntityHostComponent.instance).data = entity;
     }
 
     getGlobalEntityActions (meta) {

@@ -64,7 +64,8 @@ export class SpellComponent implements DynamicEntityComponent {
             'E': 'Enchantment',
             'V': 'Evocation',
             'T': 'Transmuation',
-            'N': 'Necromancy'
+            'N': 'Necromancy',
+            'I': 'Illusion'
         }[school];
     }
 

@@ -19,7 +19,8 @@ export class SourceComponent {
     getSourceName (source) {
         return {
             'MM': `Monster Manual`,
-            'PHB': `Player's Handbook`
+            'PHB': `Player's Handbook`,
+            'XGE': `Xanathar's guide to everything`
         }[source] || 'Unknown source';
     }
 

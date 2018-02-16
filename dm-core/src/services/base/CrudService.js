@@ -8,6 +8,9 @@ module.exports = (config) => {
     raw.createdBy = requestor._id;
     raw.createdOn = new Date();
 
+    raw.lastModifiedBy = requestor._id;
+    raw.lastModifiedOn = new Date();
+
     return Repository.create(raw);
   };
 

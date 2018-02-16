@@ -31,13 +31,32 @@ const headers = {
 };
 
 
+const backgroundFiles = [
+    './data/backgrounds'
+];
+
+const raceFiles = [
+    './data/races'
+];
+
+const featFiles = [
+    './data/feats'
+];
+
+
 // Truncate records
 Promise.all([
     fetch('http://localhost:8080/spells', { method: 'delete' }).then((result) => console.log('Truncated spells')),
     fetch('http://localhost:8080/cults', { method: 'delete' }).then((result) => console.log('Truncated cults')),
-    fetch('http://localhost:8080/creatures', { method: 'delete' }).then((result) => console.log('Truncated creatures'))
+    fetch('http://localhost:8080/creatures', { method: 'delete' }).then((result) => console.log('Truncated creatures')),
+    fetch('http://localhost:8080/backgrounds', { method: 'delete' }).then((result) => console.log('Truncated backgrounds')),
+    fetch('http://localhost:8080/races', { method: 'delete' }).then((result) => console.log('Truncated races')),
+    fetch('http://localhost:8080/feats', { method: 'delete' }).then((result) => console.log('Truncated feats')),
 ]).then(() => {
     creatureFiles.forEach((file) => fetch('http://localhost:8080/creatures', { method: 'post', body: JSON.stringify(require(file).monster), headers }).then((result) => console.log(`Created creatures [${file}]`)));
     spellFiles.forEach((file) => fetch('http://localhost:8080/spells', { method: 'post', body: JSON.stringify(require(file).spell), headers }).then((result) => console.log(`Created spells [${file}]`)));
     cultFiles.forEach((file) => fetch('http://localhost:8080/cults', { method: 'post', body: JSON.stringify(require(file).cult), headers }).then((result) => console.log(`Created cults [${file}]`)));
+    backgroundFiles.forEach((file) => fetch('http://localhost:8080/backgrounds', { method: 'post', body: JSON.stringify(require(file).background), headers }).then((result) => console.log(`Created backgrounds [${file}]`)));
+    raceFiles.forEach((file) => fetch('http://localhost:8080/races', { method: 'post', body: JSON.stringify(require(file).race), headers }).then((result) => console.log(`Created races [${file}]`)));
+    featFiles.forEach((file) => fetch('http://localhost:8080/feats', { method: 'post', body: JSON.stringify(require(file).feat), headers }).then((result) => console.log(`Created feat [${file}]`)));
 });

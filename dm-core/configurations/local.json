@@ -1,6 +1,6 @@
 {
   "environment": "Local",
   "production": false,
-  "port": 8002,
+  "port": 9002,
   "secret": "dmtools4l1f3"
 }

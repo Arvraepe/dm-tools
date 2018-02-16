@@ -1,6 +1,6 @@
 {
   "environment": "Development",
   "production": false,
-  "port": 8080,
+  "port": 9002,
   "secret": "dmtools4l1f3"
 }

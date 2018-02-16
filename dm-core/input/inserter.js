@@ -1,10 +1,10 @@
 const fetch = require('node-fetch');
 
 const dev = 'https://dev-api.vindeenlesgever.be';
-const local = 'https://dev-api.vindeenlesgever.be';
+const local = 'http://localhost:9002';
 
 // CHANGE ENV URL HERE!
-const url = dev;
+const url = local;
 
 const cultFiles = [
     './data/cults'

@@ -1,5 +1,11 @@
 const fetch = require('node-fetch');
 
+const dev = 'https://dev-api.vindeenlesgever.be';
+const local = 'https://dev-api.vindeenlesgever.be';
+
+// CHANGE ENV URL HERE!
+const url = dev;
+
 const cultFiles = [
     './data/cults'
 ];
@@ -46,17 +52,17 @@ const featFiles = [
 
 // Truncate records
 Promise.all([
-    fetch('http://localhost:9002/spells', { method: 'delete' }).then((result) => console.log('Truncated spells')),
-    fetch('http://localhost:9002/cults', { method: 'delete' }).then((result) => console.log('Truncated cults')),
-    fetch('http://localhost:9002/creatures', { method: 'delete' }).then((result) => console.log('Truncated creatures')),
-    fetch('http://localhost:9002/backgrounds', { method: 'delete' }).then((result) => console.log('Truncated backgrounds')),
-    fetch('http://localhost:9002/races', { method: 'delete' }).then((result) => console.log('Truncated races')),
-    fetch('http://localhost:9002/feats', { method: 'delete' }).then((result) => console.log('Truncated feats')),
+    fetch(`${url}/spells`, { method: 'delete' }).then((result) => console.log('Truncated spells')),
+    fetch(`${url}/cults`, { method: 'delete' }).then((result) => console.log('Truncated cults')),
+    fetch(`${url}/creatures`, { method: 'delete' }).then((result) => console.log('Truncated creatures')),
+    fetch(`${url}/backgrounds`, { method: 'delete' }).then((result) => console.log('Truncated backgrounds')),
+    fetch(`${url}/races`, { method: 'delete' }).then((result) => console.log('Truncated races')),
+    fetch(`${url}/feats`, { method: 'delete' }).then((result) => console.log('Truncated feats')),
 ]).then(() => {
-    creatureFiles.forEach((file) => fetch('http://localhost:9002/creatures', { method: 'post', body: JSON.stringify(require(file).monster), headers }).then((result) => console.log(`Created creatures [${file}]`)));
-    spellFiles.forEach((file) => fetch('http://localhost:9002/spells', { method: 'post', body: JSON.stringify(require(file).spell), headers }).then((result) => console.log(`Created spells [${file}]`)));
-    cultFiles.forEach((file) => fetch('http://localhost:9002/cults', { method: 'post', body: JSON.stringify(require(file).cult), headers }).then((result) => console.log(`Created cults [${file}]`)));
-    backgroundFiles.forEach((file) => fetch('http://localhost:9002/backgrounds', { method: 'post', body: JSON.stringify(require(file).background), headers }).then((result) => console.log(`Created backgrounds [${file}]`)));
-    raceFiles.forEach((file) => fetch('http://localhost:9002/races', { method: 'post', body: JSON.stringify(require(file).race), headers }).then((result) => console.log(`Created races [${file}]`)));
-    featFiles.forEach((file) => fetch('http://localhost:9002/feats', { method: 'post', body: JSON.stringify(require(file).feat), headers }).then((result) => console.log(`Created feat [${file}]`)));
+    creatureFiles.forEach((file) => fetch(`${url}/creatures`, { method: 'post', body: JSON.stringify(require(file).monster), headers }).then((result) => console.log(`Created creatures [${file}]`)));
+    spellFiles.forEach((file) => fetch(`${url}/spells`, { method: 'post', body: JSON.stringify(require(file).spell), headers }).then((result) => console.log(`Created spells [${file}]`)));
+    cultFiles.forEach((file) => fetch(`${url}/cults`, { method: 'post', body: JSON.stringify(require(file).cult), headers }).then((result) => console.log(`Created cults [${file}]`)));
+    backgroundFiles.forEach((file) => fetch(`${url}/backgrounds`, { method: 'post', body: JSON.stringify(require(file).background), headers }).then((result) => console.log(`Created backgrounds [${file}]`)));
+    raceFiles.forEach((file) => fetch(`${url}/races`, { method: 'post', body: JSON.stringify(require(file).race), headers }).then((result) => console.log(`Created races [${file}]`)));
+    featFiles.forEach((file) => fetch(`${url}/feats`, { method: 'post', body: JSON.stringify(require(file).feat), headers }).then((result) => console.log(`Created feat [${file}]`)));
 });

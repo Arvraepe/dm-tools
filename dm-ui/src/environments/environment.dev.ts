@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    api: 'http://dev-api.vindeenlesgever.be'
+    api: 'https://dev-api.vindeenlesgever.be'
 };

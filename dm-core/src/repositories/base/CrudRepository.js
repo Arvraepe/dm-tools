@@ -7,22 +7,16 @@ const findAll = (model) => (addDeleted = false) => model.find({}).exists('delete
 const findSelected = (model) => (columns, addDeleted = false) => model.find({}).select(columns).then((list) => list.map((obj) => obj.toObject()));
 const getById = (model) => (id, addDeleted = false) => model.findOne({ '_id': id }).exists('deletedOn', addDeleted).then((obj) => obj.toObject());
 const getByProperties = (model) => (where, addDeleted = false) => model.find(where).exists('deletedOn', addDeleted).then((list) => list.map((obj) => obj.toObject()));
-const create = (model) => (raw) => {
-  return new model(raw).save()
-    .then((obj) => obj.toObject())
-    .catch((err) => console.error(err));
-};
-const update = (model) => (id, raw) => {
-  return model.findOneAndUpdate({ _id: id }, raw, { new: true });
-};
-const remove = (model) => (id, by) => model.findOneAndUpdate({ _id: id }, { $set: { deletedOn: new Date(), deletedBy: by }}, { "new": true });
+const create = (model) => (raw) => new model(raw).save().then((obj) => obj.toObject());
+const update = (model) => (id, raw) => model.findOneAndUpdate({ _id: id }, raw, { new: true }).then((obj) => obj.toObject());
+const remove = (model) => (id, by) => model.findOneAndUpdate({ _id: id }, { $set: { deletedOn: new Date(), deletedBy: by }}, { "new": true }).then((obj) => obj.toObject());
 const hardRemove = (model) => (id) => model.find({ '_id': id }).remove();
 const truncate = (model) => () => model.remove();
 const fullTextSearch = (model) => (query, addDeleted = false) => model.find({$text: {$search: query}}).exists('deletedOn', addDeleted).then((list) => list.map((obj) => obj.toObject()));
 
 module.exports = (config) => {
 
-  const model = BaseModel.collect(config);
+  const model = config.model || BaseModel.collect(config);
 
   return {
     fullTextSearch: fullTextSearch(model),
@@ -32,7 +26,7 @@ module.exports = (config) => {
     getById: getById(model),
     getByProperties: getByProperties(model),
     update: update(model),
-    remove:remove(model),
+    remove: remove(model),
     hardRemove: hardRemove(model),
     truncate: truncate(model)
   }

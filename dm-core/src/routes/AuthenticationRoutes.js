@@ -11,4 +11,6 @@ Router.post('/authenticate', (req, res) => {
     .catch((err) => ResponseHelper.errorResponse(req, res, err));
 });
 
+Router.post('/', (req, res) => ResponseHelper.promiseResponseHandler(req, res, UserService.create(req.body.username, req.body.password)));
+
 module.exports = Router;

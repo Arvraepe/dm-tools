@@ -32,7 +32,7 @@ import {EntityComponentMappings} from "../../mappings/entities.mappings";
                     <thead>
                         <th *ngFor="let column of getEntityColumns(meta)">{{ column.label }}</th>
                     </thead>
-                    <tr *ngFor="let entity of entities" class="clickable" (click)="goto(entity._id)">
+                    <tr *ngFor="let entity of entities" class="clickable is-hoverable" (click)="goto(entity._id)">
                         <td *ngFor="let column of getEntityColumns(meta)">{{ getProperty(entity, column.path) }}</td>
                     </tr>
                 </table>

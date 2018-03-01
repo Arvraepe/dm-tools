@@ -32,11 +32,6 @@ const creatureFiles = [
     // './data/bestiary/bestiary-pota'
 ];
 
-const headers = {
-    'Content-Type': 'application/json'
-};
-
-
 const backgroundFiles = [
     './data/backgrounds'
 ];
@@ -49,6 +44,11 @@ const featFiles = [
     './data/feats'
 ];
 
+const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTk3ZjgyNDlkMzU5YTNjMmQ3YTc2ODUiLCJ1c2VybmFtZSI6InRlc3QiLCJjcmVhdGVkQnkiOiJTWVNURU0iLCJjcmVhdGVkT24iOiIyMDE4LTAzLTAxVDEyOjU1OjAwLjY1NloiLCJsYXN0TW9kaWZpZWRCeSI6IlNZU1RFTSIsImxhc3RNb2RpZmllZE9uIjoiMjAxOC0wMy0wMVQxMjo1NTowMC42NTZaIiwiaWF0IjoxNTE5OTA5ODc4fQ.RjFkpOEnDsktuo5Cg_n_1L3Gas3X7wx1iDoczkJz0cs'
+};
+
 
 // Truncate records
 Promise.all([
@@ -59,10 +59,10 @@ Promise.all([
     fetch(`${url}/races`, { method: 'delete' }).then((result) => console.log('Truncated races')),
     fetch(`${url}/feats`, { method: 'delete' }).then((result) => console.log('Truncated feats')),
 ]).then(() => {
-    creatureFiles.forEach((file) => fetch(`${url}/creatures`, { method: 'post', body: JSON.stringify(require(file).monster), headers }).then((result) => console.log(`Created creatures [${file}]`)));
-    spellFiles.forEach((file) => fetch(`${url}/spells`, { method: 'post', body: JSON.stringify(require(file).spell), headers }).then((result) => console.log(`Created spells [${file}]`)));
-    cultFiles.forEach((file) => fetch(`${url}/cults`, { method: 'post', body: JSON.stringify(require(file).cult), headers }).then((result) => console.log(`Created cults [${file}]`)));
-    backgroundFiles.forEach((file) => fetch(`${url}/backgrounds`, { method: 'post', body: JSON.stringify(require(file).background), headers }).then((result) => console.log(`Created backgrounds [${file}]`)));
-    raceFiles.forEach((file) => fetch(`${url}/races`, { method: 'post', body: JSON.stringify(require(file).race), headers }).then((result) => console.log(`Created races [${file}]`)));
-    featFiles.forEach((file) => fetch(`${url}/feats`, { method: 'post', body: JSON.stringify(require(file).feat), headers }).then((result) => console.log(`Created feat [${file}]`)));
+    creatureFiles.forEach((file) => fetch(`${url}/creatures`, { method: 'post', headers, body: JSON.stringify(require(file).monster), headers }).then((result) => console.log(`Created creatures [${file}]`)));
+    spellFiles.forEach((file) => fetch(`${url}/spells`, { method: 'post', headers, body: JSON.stringify(require(file).spell), headers }).then((result) => console.log(`Created spells [${file}]`)));
+    cultFiles.forEach((file) => fetch(`${url}/cults`, { method: 'post', headers, body: JSON.stringify(require(file).cult), headers }).then((result) => console.log(`Created cults [${file}]`)));
+    backgroundFiles.forEach((file) => fetch(`${url}/backgrounds`, { method: 'post', headers, body: JSON.stringify(require(file).background), headers }).then((result) => console.log(`Created backgrounds [${file}]`)));
+    raceFiles.forEach((file) => fetch(`${url}/races`, { method: 'post', headers, body: JSON.stringify(require(file).race), headers }).then((result) => console.log(`Created races [${file}]`)));
+    featFiles.forEach((file) => fetch(`${url}/feats`, { method: 'post', headers, body: JSON.stringify(require(file).feat), headers }).then((result) => console.log(`Created feat [${file}]`)));
 });

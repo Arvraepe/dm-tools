@@ -32,10 +32,22 @@ import {EntityComponentMappings} from "../../mappings/entities.mappings";
                     <thead>
                         <th *ngFor="let column of getEntityColumns(meta)">{{ column.label }}</th>
                     </thead>
-                    <tr *ngFor="let entity of entities" class="clickable is-hoverable" (click)="goto(entity._id)">
+                    <tr *ngFor="let entity of paginatedEntities" class="clickable is-hoverable" (click)="goto(entity._id)">
                         <td *ngFor="let column of getEntityColumns(meta)">{{ getProperty(entity, column.path) }}</td>
                     </tr>
                 </table>
+            </div>
+            
+            <div>
+                <nav class="pagination" role="navigation" aria-label="pagination">
+                    <a class="pagination-previous" (click)="previous()">Previous</a>
+                    <a class="pagination-next" (click)="next()">Next page</a>
+                    <ul class="pagination-list">
+                        <li *ngFor="let page of getAmountOfPages()">
+                            <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">{{ page }}</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     `,
@@ -48,6 +60,9 @@ export class EntitiesComponent {
     private entities;
     private query;
     private isSimpleSearch = true;
+    private paginatedEntities = [];
+    private amount = 20;
+    private offset = 0;
 
     constructor (
         private route: ActivatedRoute,
@@ -60,9 +75,33 @@ export class EntitiesComponent {
             this.entityType = params.entity;
 
             this.entityService.info(this.entityType).then((meta) => this.meta = meta);
-            this.entityService.getAll(this.entityType).then((entities) => this.entities = entities);
+            this.entityService.getAll(this.entityType).then((entities) => {
+                this.entities = entities;
+                this.offset = 0;
+                this.paginate();
+            });
 
         });
+
+    }
+
+    paginate () {
+        this.paginatedEntities = this.entities.slice(this.offset, this.offset + this.amount);
+    }
+
+    getAmountOfPages () {
+        return Math.ceil(this.entities / this.amount);
+    }
+
+    getCurrentPage () {
+
+    }
+
+    next () {
+
+    }
+
+    previous () {
 
     }
 

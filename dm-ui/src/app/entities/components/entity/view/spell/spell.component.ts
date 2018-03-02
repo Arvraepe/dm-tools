@@ -9,13 +9,35 @@ import {DynamicEntityComponent} from "../../dynamic-entity.component";
 
             <section class="hero is-light">
               <div class="hero-body">
-                <div class="container">
-                  <h1 class="title">
-                    {{ data.name }}
-                  </h1>
-                  <h2 class="subtitle">
-                    {{ getLevel(data.level) }} ({{ getSchool(data.school) }})
-                  </h2>
+                <div class="container columns">
+                    <div class="column is-8" >
+                        <h1 class="title">
+                            {{ data.name }}
+                        </h1>
+                        <h2 class="subtitle">
+                            {{ getLevel(data.level) }} ({{ getSchool(data.school) }})
+                        </h2>
+                    </div>
+                    <div class="column is-2">
+                        <h1 class="title">
+                            Casting
+                        </h1>
+                        <h2 class="subtitle">
+                            {{ data.time[0].number }} {{ data.time[0].unit }}
+                        </h2>
+                    </div>
+                    <div class="column is-2">
+                        <h1 class="title">
+                            Duration
+                        </h1>
+                        <h2 class="subtitle" *ngIf="data.duration[0].type == 'instant'">
+                            Instantaneous
+                        </h2>
+                        <h2 class="subtitle" *ngIf="data.duration[0].type == 'timed'">
+                            {{ data.duration[0].duration.amount }} {{ data.duration[0].duration.type }}
+                            <span style="text-transform: uppercase;" class="tag is-danger" *ngIf="data.duration[0].concentration"><i title="concentration" class="fa fa-fw fa-bell"></i></span>
+                        </h2>
+                    </div>
                 </div>
               </div>
             </section>

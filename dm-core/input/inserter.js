@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const fs = require('fs');
 
 const dev = 'https://dev-api.vindeenlesgever.be';
 const local = 'http://localhost:9002';
@@ -44,6 +45,8 @@ const featFiles = [
     './data/feats'
 ];
 
+const tableFiles = fs.readdirSync('./data/tables').map((file) => './data/tables/'+file);
+
 const headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTk3ZjgyNDlkMzU5YTNjMmQ3YTc2ODUiLCJ1c2VybmFtZSI6InRlc3QiLCJjcmVhdGVkQnkiOiJTWVNURU0iLCJjcmVhdGVkT24iOiIyMDE4LTAzLTAxVDEyOjU1OjAwLjY1NloiLCJsYXN0TW9kaWZpZWRCeSI6IlNZU1RFTSIsImxhc3RNb2RpZmllZE9uIjoiMjAxOC0wMy0wMVQxMjo1NTowMC42NTZaIiwiaWF0IjoxNTE5OTA5ODc4fQ.RjFkpOEnDsktuo5Cg_n_1L3Gas3X7wx1iDoczkJz0cs'
@@ -58,6 +61,7 @@ Promise.all([
     fetch(`${url}/backgrounds`, { method: 'delete' }).then((result) => console.log('Truncated backgrounds')),
     fetch(`${url}/races`, { method: 'delete' }).then((result) => console.log('Truncated races')),
     fetch(`${url}/feats`, { method: 'delete' }).then((result) => console.log('Truncated feats')),
+    fetch(`${url}/tables`, { method: 'delete' }).then((result) => console.log('Truncated tables')),
 ]).then(() => {
     creatureFiles.forEach((file) => fetch(`${url}/creatures`, { method: 'post', headers, body: JSON.stringify(require(file).monster), headers }).then((result) => console.log(`Created creatures [${file}]`)));
     spellFiles.forEach((file) => fetch(`${url}/spells`, { method: 'post', headers, body: JSON.stringify(require(file).spell), headers }).then((result) => console.log(`Created spells [${file}]`)));
@@ -65,4 +69,5 @@ Promise.all([
     backgroundFiles.forEach((file) => fetch(`${url}/backgrounds`, { method: 'post', headers, body: JSON.stringify(require(file).background), headers }).then((result) => console.log(`Created backgrounds [${file}]`)));
     raceFiles.forEach((file) => fetch(`${url}/races`, { method: 'post', headers, body: JSON.stringify(require(file).race), headers }).then((result) => console.log(`Created races [${file}]`)));
     featFiles.forEach((file) => fetch(`${url}/feats`, { method: 'post', headers, body: JSON.stringify(require(file).feat), headers }).then((result) => console.log(`Created feat [${file}]`)));
+    tableFiles.forEach((file) => fetch(`${url}/tables`, { method: 'post', headers, body: JSON.stringify(require(file)), headers }).then((result) => console.log(`Created table [${file}]`)));
 });

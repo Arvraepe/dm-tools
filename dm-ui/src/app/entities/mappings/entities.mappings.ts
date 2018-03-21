@@ -6,6 +6,7 @@ import {CreatureComponent} from "../components/entity/view/creature/creature.com
 import {FilterComponent} from "../components/entity/view/filter/filter.component";
 import {ShopComponent} from "../components/entity/view/shop/shop.component";
 import {FilterEditorComponent} from "../components/entity/editor/filter/filter-editor.component";
+import {TableComponent} from "../components/entity/view/table/table.component";
 
 const navigate = (view) => (entityType, entity, router) => {
     router.navigateByUrl(`/entities/${entityType}/${entity._id}/${view}`);
@@ -70,6 +71,18 @@ export const EntityComponentMappings = {
             { global: true, label: 'Build', icon: 'fa-gavel', perform: navigate('builder')  },
             { global: false, label: 'Edit', icon: 'fa-pencil', perform: navigate('editor') },
             { global: false, label: 'Remove', icon: 'fa-trash', perform: () => null }
+        ],
+    },
+
+    tables: {
+        views: {
+            view: TableComponent,
+        },
+        columns: [
+            { label: 'Name', path: ['name'] },
+        ],
+        actions: [
+
         ],
     }
 };

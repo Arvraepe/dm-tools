@@ -12,6 +12,7 @@ import {CreatureComponent} from "./entities/components/entity/view/creature/crea
 import {ShopComponent} from "./entities/components/entity/view/shop/shop.component";
 import {FilterComponent} from "./entities/components/entity/view/filter/filter.component";
 import {FilterEditorComponent} from "./entities/components/entity/editor/filter/filter-editor.component";
+import {TableComponent} from "./entities/components/entity/view/table/table.component";
 
 // Components that are dynamically loaded need to go here.
 const entryComponents = [
@@ -20,7 +21,8 @@ const entryComponents = [
     CreatureComponent,
     ShopComponent,
     FilterComponent,
-    FilterEditorComponent
+    FilterEditorComponent,
+    TableComponent
 ];
 
 @NgModule({
